@@ -1,18 +1,10 @@
-import psycopg2
-import os
-from dotenv import load_dotenv
-
-# Load environment variables from .env file
-load_dotenv()
+import oracledb
 
 def get_db_connection():
-    connection = psycopg2.connect(
-        host=os.getenv('DB_HOST'),
-        database=os.getenv('DB_NAME'),
-        user=os.getenv('DB_USER'),
-        password=os.getenv('DB_PASS'),
-        port=os.getenv('DB_PORT')
-    )
+    un = 'sql_dev'
+    cs = 'localhost/orclpdb'
+    pw = 'oracle'
+    connection = oracledb.connect(user=un, password=pw, dsn=cs)
     return connection
 
 def get(sql):
